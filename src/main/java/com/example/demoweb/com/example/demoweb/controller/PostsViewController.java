@@ -25,4 +25,9 @@ public class PostsViewController {
         model.addAttribute("posts", postsService.listAllPosts());
         return "list";
     }
+    @ResponseBody
+    @RequestMapping(path = "/post1/{id}", method = RequestMethod.GET)
+    public String single1(@PathVariable("id") Long id) {
+        return "Здесь будет страница №" + id;
+    }
 }
