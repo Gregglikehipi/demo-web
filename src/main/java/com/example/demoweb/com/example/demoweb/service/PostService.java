@@ -10,14 +10,14 @@ import java.util.List;
 
 @Service
 public class PostService {
-    Post mas = new Post("Масюня", new Date());
-    Post NECO = new Post("НекоАрк", new Date());
+    Post mas = new Post(0,"Масюня", new Date());
+    Post NECO = new Post(1,"НекоАрк", new Date());
     List<Post> posts = new ArrayList<Post>(Arrays.asList(mas, NECO));
     public List<Post> listAllPosts() {
         return posts;
     }
 
     public void create(String text) {
-        posts.add(new Post(text, new Date()));
+        posts.add(new Post(posts.size() ,text, new Date()));
     }
 }
