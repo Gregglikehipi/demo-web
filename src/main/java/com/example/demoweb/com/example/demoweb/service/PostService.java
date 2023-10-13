@@ -17,8 +17,9 @@ public class PostService {
     public Iterable<Post> listAllPosts() {
             return postRepository.findAll();
     }
-    public void create(String text) {
+    public Post create(String text) {
         Post post = new Post(null, text);
         postRepository.save(post);
+        return post;
     }
 }
