@@ -1,51 +1,60 @@
 package com.example.demoweb.model.com.example.demoweb.model;
 
+import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Random;
 
-public class Post {
-    private String text;
-    private Integer likes = 0;
-    private Date creationDate;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
+@Entity
+public class Post implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-    public Post(String text, Integer likes) {
-        this.text = text;
-        this.likes = likes;
-    }
-    public Post(String text, Date creationDate) {
-        this.text = text;
-        this.creationDate = creationDate;
-    }
-    public Post(String text) {
-        this.text = text;
-    }
+    private String text;
+    private Integer likes;
+    private Date creationDate;
 
-    public Post(long id, String text, Date creationDate) {
+    public Post(Long id, String text) {
         this.id = id;
         this.text = text;
-        this.creationDate = creationDate;
+        Calendar cal = Calendar.getInstance();
+        this.creationDate = cal.getTime();
+        this.likes = Math.abs(new Random().nextInt(100));
     }
-    public Date getCreationDate()
-    {
-        return creationDate;
+
+    public Post() {
+
     }
+
+    public Long getId() {
+        return this.id;
+    }
+
     public String getText() {
-        return text;
+        return this.text;
     }
-    public Integer getLikes() {
-        return likes;
-    }
-    public Long getId(){
-        return id;
-    }
-    public void setCreationDate(Date date)
-    {
-        creationDate = date;
-    }
-    public void setText(String text)
-    {
+
+    public void setText(String text) {
         this.text = text;
     }
-    public void setLikes(Integer num) {
-        likes = num;
+
+    public Integer getLikes() {
+        return this.likes;
+    }
+
+    public void setLikes(Integer likes) {
+        this.likes = likes;
+    }
+
+    public Date getCreationDate() {
+        return this.creationDate;
     }
 }
+
