@@ -21,13 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
-@TestPropertySource("/test-application.properties")
-@ImportResource
 class IntegrationTests {
-
-    @Autowired
-    private MockMvc mockMvc;
     @Autowired
     private LikesController likesController;
     @Autowired
@@ -43,7 +37,6 @@ class IntegrationTests {
             postService.create("text");
         }
         var post = postService.listAllPosts().iterator().next();
-        post = postService.listAllPosts().iterator().next();
         int actual = post.getLikes();
         likesController.like(post.getId());
         post = postService.listAllPosts().iterator().next();
