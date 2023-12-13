@@ -38,11 +38,6 @@ class IntegrationTests {
             postService.create("text");
         }
         var post = postService.listAllPosts().iterator().next();
-        var test = postService.listAllPosts().iterator();
-        while (test.hasNext()){
-            var g = test.next();
-            System.out.println(g.getText());
-        }
         int actual = post.getLikes();
         likesController.like(post.getId());
         post = postService.listAllPosts().iterator().next();
